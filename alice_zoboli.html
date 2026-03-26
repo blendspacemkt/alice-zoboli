@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alice Zoboli</title>
+<style>
+@import url('https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro');
+
+:root {
+  --pink:    #ffb3c3;
+  --navy:    #2a234f;
+  --purple:  #5f4a8b;
+  --white:   #ffffff;
+  --off:     #f4f2f8;
+  --text:    #1a1520;
+  --muted:   #7a7090;
+  --border:  #e2ddef;
+}
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: 'Neue Haas Grotesk Display Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HERO ─────────────────────────────── */
+.hero {
+  background: var(--navy);
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,179,195,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,179,195,0.05) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+.hero-left {
+  display: flex; flex-direction: column;
+  justify-content: center;
+  padding: 80px 56px 80px 80px;
+  position: relative; z-index: 2;
+}
+
+.hero-eyebrow {
+  display: inline-flex; align-items: center; gap: 10px;
+  margin-bottom: 40px;
+  opacity: 0; animation: up .7s ease .1s forwards;
+}
+
+.hero-dot { width:7px; height:7px; border-radius:50%; background:var(--pink); }
+
+.hero-eyebrow-text {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,210,220,0.9);
+}
+
+.hero-name {
+  font-size: clamp(64px, 8.5vw, 128px);
+  font-weight: 700; line-height: .88;
+  letter-spacing: -3px; color: var(--white);
+  opacity: 0; animation: up .7s ease .25s forwards;
+}
+
+.hero-name-accent { display: block; color: var(--pink); }
+
+.hero-divider {
+  width: 48px; height: 2px;
+  background: var(--pink); margin: 40px 0;
+  opacity: 0; animation: up .7s ease .4s forwards;
+}
+
+.hero-concept { opacity: 0; animation: up .7s ease .55s forwards; }
+
+.hero-concept-main {
+  font-size: 20px; font-weight: 400;
+  color: rgba(255,255,255,0.9); line-height: 1.4; margin-bottom: 8px;
+}
+
+.hero-concept-sub {
+  font-size: 12px; font-weight: 400;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+}
+
+.hero-stats {
+  display: flex; gap: 0; margin-top: 56px;
+  opacity: 0; animation: up .7s ease .7s forwards;
+}
+
+.hero-stat {
+  padding: 0 32px 0 0; margin-right: 32px;
+  border-right: 1px solid rgba(255,179,195,0.2);
+}
+
+.hero-stat:last-child { border-right: none; }
+
+.hero-stat-num {
+  font-size: clamp(28px, 3.5vw, 40px); font-weight: 700;
+  color: var(--pink); line-height: 1; letter-spacing: -1px;
+}
+
+.hero-stat-label {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-top: 6px; line-height: 1.5;
+}
+
+.hero-right {
+  position: relative; display: flex;
+  align-items: center; justify-content: center; overflow: hidden;
+}
+
+.hero-circle-outer {
+  position: absolute; width: 380px; height: 380px;
+  border-radius: 50%; border: 1px solid rgba(255,179,195,0.1);
+  animation: spin 30s linear infinite;
+}
+
+.hero-circle-outer::after {
+  content: ''; position: absolute;
+  top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--pink); opacity: .5;
+}
+
+.hero-circle-mid {
+  position: absolute; width: 220px; height: 220px;
+  border-radius: 50%; border: 1px solid rgba(95,74,139,0.35);
+  animation: spin 20s linear infinite reverse;
+}
+
+.hero-circle-inner {
+  position: absolute; width: 100px; height: 100px;
+  border-radius: 50%;
+  background: rgba(255,179,195,0.05);
+  border: 1px solid rgba(255,179,195,0.12);
+}
+
+.hero-vertical-text {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 5px; text-transform: uppercase;
+  color: rgba(255,179,195,0.25);
+  writing-mode: vertical-rl; position: relative; z-index: 2;
+}
+
+.hero-scroll {
+  position: absolute; bottom: 48px; left: 80px;
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0; animation: fade 1s ease 1.2s forwards;
+}
+
+.hero-scroll-text {
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+
+.hero-scroll-bar {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, var(--pink), transparent);
+}
+
+@keyframes up   { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fade { from{opacity:0} to{opacity:1} }
+@keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+/* ── NAV ──────────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center;
+  justify-content: space-between;
+  padding: 0 80px; height: 58px;
+}
+
+.nav-logo {
+  font-size: 14px; font-weight: 600; color: var(--navy);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.nav-logo::before {
+  content: ''; width: 8px; height: 8px;
+  border-radius: 50%; background: var(--purple);
+}
+
+.nav-links { display: flex; gap: 28px; align-items: center; }
+
+.nav-links a {
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--muted); text-decoration: none; transition: color .2s;
+}
+
+.nav-links a:hover { color: var(--purple); }
+
+.nav-tag {
+  font-size: 10px; font-weight: 600; letter-spacing: 1px;
+  background: var(--navy); color: var(--pink);
+  padding: 6px 14px; border-radius: 100px; text-transform: uppercase;
+}
+
+/* ── LAYOUT ───────────────────────────── */
+.wrap { max-width: 1000px; margin: 0 auto; padding: 0 48px; }
+
+.secao { padding: 88px 0; border-bottom: 1px solid var(--border); }
+
+.secao-header { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
+
+.secao-num {
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--pink); background: var(--navy);
+  padding: 5px 12px; border-radius: 100px;
+  display: none;
+}
+
+.secao-titulo {
+  font-size: 34px; font-weight: 700;
+  letter-spacing: -.5px; color: var(--navy); line-height: 1.1;
+}
+
+.secao-titulo em { font-style: normal; color: var(--navy); }
+
+/* ── ABERTURA ─────────────────────────── */
+.abertura {
+  background: var(--off);
+  padding: 88px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.abertura-frase {
+  font-size: clamp(28px, 3.5vw, 46px);
+  font-weight: 400; line-height: 1.35;
+  color: var(--navy); max-width: 760px;
+}
+
+.abertura-frase em { font-style: normal; color: var(--purple); font-weight: 600; }
+
+.abertura-frase .ul {
+  position: relative; display: inline-block;
+}
+
+.abertura-frase .ul::after {
+  content: ''; position: absolute;
+  left: 0; bottom: 2px; right: 0; height: 3px;
+  background: var(--pink); border-radius: 2px;
+}
+
+/* ── CORPO DE TEXTO ───────────────────── */
+.corpo p, .move-texto p, .fora-texto p, .atleta-narr p {
+  font-size: 17px; font-weight: 300;
+  line-height: 1.85; color: #3a3252; margin-bottom: 22px;
+}
+
+.corpo p b, .move-texto p b, .fora-texto p b { font-weight: 600; color: var(--navy); }
+
+/* ── QUEM É ───────────────────────────── */
+.quem-grid {
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 64px; align-items: start;
+}
+
+.define-box {
+  background: var(--navy); border-radius: 16px;
+  padding: 36px; position: sticky; top: 76px;
+}
+
+.define-titulo {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: rgba(255,179,195,0.55); margin-bottom: 28px;
+}
+
+.define-row {
+  display: flex; justify-content: space-between;
+  align-items: baseline; padding: 13px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.define-row:last-child { border-bottom: none; }
+.define-palavra { font-size: 15px; font-weight: 600; color: #f0ecff; }
+.define-detalhe { font-size: 11px; font-weight: 400; color: rgba(255,179,195,0.75); font-style: italic; }
+
+/* ── A ATLETA ─────────────────────────── */
+.atleta-bg { background: var(--off); }
+
+.atleta-cards {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; border-radius: 12px; overflow: hidden; margin-bottom: 48px;
+}
+
+.atleta-card { background: var(--white); padding: 28px 24px; transition: background .2s; }
+.atleta-card:hover { background: var(--off); }
+.atleta-label { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--purple); margin-bottom: 10px; }
+.atleta-valor { font-size: 16px; font-weight: 600; color: var(--navy); line-height: 1.35; }
+
+.atleta-narr { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+/* ── MOMENTO ──────────────────────────── */
+.momento-bg { background: var(--navy); }
+.momento-bg .secao-titulo { color: var(--white); }
+.momento-bg .secao-titulo em { color: var(--white); }
+.momento-bg .secao-num { background: rgba(255,179,195,0.15); color: var(--pink); }
+
+.momento-ctx {
+  font-size: 10px; font-weight: 600;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.55); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
+}
+
+.momento-ctx::before { content: ''; width: 20px; height: 1px; background: var(--pink); }
+
+.placar-wrap {
+  display: inline-grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  border-radius: 12px; overflow: hidden;
+  margin-bottom: 20px;
+  width: 100%; max-width: 400px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+}
+
+.placar-lado { padding: 20px 24px; text-align: center; }
+.placar-lado.baixo { background: rgba(255,255,255,0.05); }
+.placar-lado.alto  { background: var(--purple); }
+
+.placar-top {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 8px;
+}
+
+.placar-lado.baixo .placar-top { color: rgba(255,255,255,0.55); }
+.placar-lado.alto  .placar-top { color: rgba(255,210,220,0.9); }
+
+.placar-n { font-size: 56px; font-weight: 700; line-height: 1; letter-spacing: -2px; display: block; }
+.placar-lado.baixo .placar-n { color: rgba(255,255,255,0.1); }
+.placar-lado.alto  .placar-n { color: var(--white); }
+
+.placar-sep {
+  background: rgba(255,255,255,0.03);
+  display: flex; align-items: center; padding: 0 14px;
+  font-size: 18px; font-weight: 700; color: rgba(255,255,255,0.12);
+}
+
+.virada-row {
+  display: flex; align-items: center; gap: 16px;
+  margin: 16px 0 20px;
+}
+
+.virada-line { flex: 1; height: 1px; background: linear-gradient(to right, var(--pink), transparent); }
+.virada-line.rev { background: linear-gradient(to left, var(--pink), transparent); }
+.virada-text { font-size: 14px; font-weight: 400; color: var(--pink); white-space: nowrap; font-style: italic; }
+
+.momento-frase {
+  font-size: clamp(17px, 2vw, 24px);
+  font-weight: 300; line-height: 1.7;
+  color: rgba(255,255,255,0.88); max-width: 680px;
+}
+
+.momento-frase em { font-style: italic; color: var(--pink); }
+
+/* momento inline */
+.momento-inline {
+  display: flex; align-items: center; gap: 20px;
+  flex-wrap: wrap; margin: 28px 0 0;
+}
+
+.momento-inline-placar {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+
+.mi-label {
+  font-size: 9px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.5);
+  white-space: nowrap;
+}
+
+.mi-num {
+  font-size: 52px; font-weight: 700; line-height: 1; letter-spacing: -2px;
+}
+
+.mi-baixo { color: rgba(255,255,255,0.18); }
+.mi-alto  { color: var(--pink); text-shadow: 0 0 20px rgba(255,179,195,0.3); }
+
+.mi-sep {
+  font-size: 20px; font-weight: 700;
+  color: rgba(255,255,255,0.12); padding-bottom: 16px;
+}
+
+.mi-virada {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; border-radius: 100px;
+  background: rgba(255,179,195,0.08);
+  border: 1px solid rgba(255,179,195,0.15);
+  margin: 0 8px;
+}
+
+.mi-virada span:first-child,
+.mi-virada span:last-child {
+  color: var(--pink); font-size: 14px;
+}
+
+.mi-virada-text {
+  font-size: 12px; font-style: italic;
+  color: var(--pink); white-space: nowrap;
+}
+
+/* ── O QUE MOVE ───────────────────────── */
+.move-grid { display: grid; grid-template-columns: 1fr 340px; gap: 64px; align-items: start; }
+
+.refs-box { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+
+.refs-box-header {
+  background: var(--navy); padding: 14px 22px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: #f5c8d5;
+}
+
+.ref-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 18px 22px; border-bottom: 1px solid var(--border);
+  transition: background .15s; cursor: default;
+}
+
+.ref-row:last-child { border-bottom: none; }
+.ref-row:hover { background: var(--off); }
+.ref-flag { font-size: 20px; flex-shrink: 0; }
+.ref-nome { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+.ref-sub  { font-size: 11px; color: var(--muted); }
+
+.ref-badge {
+  margin-left: auto; flex-shrink: 0;
+  background: var(--purple); color: var(--white);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1px; padding: 4px 10px; border-radius: 100px;
+}
+
+/* ── FORA DA QUADRA ───────────────────── */
+.fora-bg { background: var(--off); }
+
+.fora-grid { display: grid; grid-template-columns: 1fr 320px; gap: 64px; align-items: start; }
+
+.hobbies-list { background: var(--white); border-radius: 16px; border: 1px solid var(--border); overflow: hidden; }
+
+.hobby-row {
+  display: flex; align-items: center; gap: 14px;
+  padding: 16px 22px; border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+
+.hobby-row:last-child { border-bottom: none; }
+.hobby-row:hover { background: var(--off); }
+.hobby-icon { font-size: 20px; }
+.hobby-nome { font-size: 14px; font-weight: 600; color: var(--navy); }
+.hobby-detalhe { font-size: 11px; color: var(--muted); margin-left: auto; }
+
+/* ── CONQUISTAS ───────────────────────── */
+.conquistas-list { display: flex; flex-direction: column; gap: 10px; }
+
+.conquista {
+  display: grid; grid-template-columns: 44px 1fr auto;
+  align-items: center; gap: 24px;
+  padding: 24px 28px; background: var(--white);
+  border: 1px solid var(--border); border-radius: 12px;
+  transition: all .2s;
+}
+
+.conquista:hover {
+  border-color: var(--purple);
+  box-shadow: 0 4px 20px rgba(95,74,139,0.1);
+  transform: translateX(3px);
+}
+
+.conquista.top { background: var(--navy); border-color: var(--navy); }
+
+.conquista-icon { font-size: 28px; text-align: center; }
+
+.conquista-nome { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+.conquista.top .conquista-nome { color: var(--white); }
+
+.conquista-sub { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.conquista.top .conquista-sub { color: rgba(255,179,195,0.8); }
+
+.conquista-tag {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--purple); background: rgba(95,74,139,0.08);
+  padding: 6px 14px; border-radius: 100px; white-space: nowrap; flex-shrink: 0;
+}
+
+.conquista.top .conquista-tag { background: var(--pink); color: var(--navy); }
+
+/* ── PROJETO / LINHA DO TEMPO ─────────── */
+.proj-bg { background: var(--off); }
+
+.timeline {
+  position: relative;
+  padding: 40px 0 20px;
+}
+
+/* linha horizontal de fundo */
+.timeline-track {
+  position: absolute;
+  top: 62px;
+  left: 0; right: 0;
+  height: 2px;
+  background: var(--border);
+  z-index: 0;
+}
+
+.timeline-fill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 33%;
+  background: linear-gradient(to right, var(--purple), var(--pink));
+  border-radius: 2px;
+}
+
+.timeline-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-step { text-align: center; padding: 0 16px; }
+
+.timeline-dot-wrap {
+  display: flex; justify-content: center; margin-bottom: 20px;
+}
+
+.timeline-dot {
+  width: 48px; height: 48px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  border: 2px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+  transition: all .3s;
+}
+
+.timeline-dot.ativo {
+  border-color: var(--purple);
+  background: var(--purple);
+  color: var(--white);
+  box-shadow: 0 0 0 6px rgba(95,74,139,0.1);
+}
+
+.timeline-dot.meta {
+  border-color: var(--pink);
+  background: var(--navy);
+  color: var(--pink);
+}
+
+.timeline-ano {
+  font-size: 22px; font-weight: 700;
+  color: var(--navy); letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+
+.timeline-step.ativo-step .timeline-ano { color: var(--purple); }
+.timeline-step.meta-step .timeline-ano { color: var(--navy); }
+
+.timeline-itens {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-top: 4px;
+}
+
+.timeline-item {
+  font-size: 13px; font-weight: 400;
+  color: var(--muted); line-height: 1.4;
+  display: flex; align-items: flex-start; gap: 6px;
+}
+
+.timeline-item::before {
+  content: '·'; color: var(--purple); flex-shrink: 0; margin-top: 1px;
+}
+
+.timeline-step.meta-step .timeline-item { color: var(--text); }
+.timeline-step.meta-step .timeline-item::before { color: var(--pink); }
+
+/* ── EM UMA LINHA ─────────────────────── */
+.eul { background: var(--navy); padding: 120px 0; }
+
+.eul-inner { max-width: 720px; margin: 0 auto; padding: 0 48px; text-align: center; }
+
+.eul-chip {
+  display: inline-block;
+  background: rgba(255,179,195,0.1); color: var(--pink);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 4px; text-transform: uppercase;
+  padding: 8px 18px; border-radius: 100px; margin-bottom: 44px;
+}
+
+.eul-frase {
+  font-size: clamp(18px, 2.2vw, 28px);
+  font-weight: 300; line-height: 1.65; color: var(--white);
+  max-width: 560px; margin: 0 auto;
+  text-align: center;
+}
+
+.eul-frase em { font-style: italic; color: var(--pink); }
+.eul-frase b  { font-weight: 700; color: var(--white); }
+
+/* ── CONTATO ──────────────────────────── */
+.contato-bg { background: var(--off); }
+
+.contato-inner {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 32px;
+}
+
+.contato-marca {
+  font-size: 20px; font-weight: 700; color: var(--navy);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.contato-marca::before {
+  content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--purple);
+}
+
+.contato-sub { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 4px; margin-left: 18px; }
+
+.contato-info { display: flex; flex-direction: column; gap: 8px; text-align: right; }
+.contato-linha { font-size: 13px; color: var(--muted); }
+.contato-linha b { font-weight: 600; color: var(--navy); }
+
+/* ── REVEAL ───────────────────────────── */
+.r { opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease; }
+.r.v { opacity:1; transform:translateY(0); }
+.d1 { transition-delay:.1s; }
+.d2 { transition-delay:.2s; }
+.d3 { transition-delay:.3s; }
+.d4 { transition-delay:.4s; }
+
+/* ── RESPONSIVE ───────────────────────── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 100px 32px 80px; }
+  .nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .wrap { padding: 0 24px; }
+  .quem-grid, .move-grid, .fora-grid, .atleta-narr { grid-template-columns: 1fr; }
+  .atleta-cards { grid-template-columns: 1fr 1fr; }
+  .timeline-steps { grid-template-columns: 1fr; gap: 32px; }
+  .timeline-track { display: none; }
+  .contato-inner { flex-direction: column; }
+  .contato-info { text-align: left; }
+  .secao { padding: 64px 0; }
+  .define-box { position: static; }
+  .eul-inner { padding: 0 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="hero-dot"></div>
+      <span class="hero-eyebrow-text">Beach Tennis · Sub-12 · Cristalina, GO</span>
+    </div>
+    <h1 class="hero-name">
+      Alice
+      <span class="hero-name-accent">Zoboli</span>
+    </h1>
+    <div class="hero-divider"></div>
+    <div class="hero-concept">
+      <p class="hero-concept-main">Intensidade que Marca Presença</p>
+      <p class="hero-concept-sub">Ela não anuncia. Ela aparece.</p>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">#1</div>
+        <div class="hero-stat-label">Ranking DF<br>Sub-12 Feminino</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10</div>
+        <div class="hero-stat-label">Anos<br>de idade</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">Sub-12</div>
+        <div class="hero-stat-label">Federada<br>FBBT · DF</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-circle-outer"></div>
+    <div class="hero-circle-mid"></div>
+    <div class="hero-circle-inner"></div>
+    <p class="hero-vertical-text">Intensidade · Presença · Determinação</p>
+  </div>
+  <div class="hero-scroll">
+    <span class="hero-scroll-text">Scroll</span>
+    <div class="hero-scroll-bar"></div>
+  </div>
+</section>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">Alice Zoboli</div>
+  <div class="nav-links">
+    <a href="#quem">Quem é</a>
+    <a href="#atleta">A Atleta</a>
+    <a href="#momento">O Momento</a>
+    <a href="#move">O que a move</a>
+    <a href="#fora">Fora da quadra</a>
+    <a href="#conquistas">Conquistas</a>
+    <a href="#projeto">Projeto</a>
+    <span class="nav-tag">@alice.zoboli</span>
+  </div>
+</nav>
+
+<!-- ABERTURA -->
+<div class="abertura">
+  <div class="wrap">
+    <p class="abertura-frase r">
+      Tem crianças que <em>experimentam</em> esportes.<br>
+      E tem crianças que os esportes <span class="ul">escolhem</span>.
+    </p>
+  </div>
+</div>
+
+<!-- QUEM É ALICE -->
+<section id="quem" class="secao">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">01</span>
+      <h2 class="secao-titulo">Quem é <em>Alice</em></h2>
+    </div>
+    <div class="quem-grid">
+      <div class="corpo">
+        <p class="r">Alice Zoboli tem 10 anos e mora em Cristalina, Goiás. Desde cedo, algo chamava atenção nela: não importava o esporte, não importava o ambiente. Futebol, patins, jazz, jiu-jitsu. Em cada um deles, o mesmo padrão. Ela entrava, ela se destacava.</p>
+        <p class="r d1">Não pelo barulho que fazia, mas pela <b>presença que deixava.</b></p>
+        <p class="r d2">É reservada. Mas é intensa. E essa combinação, de quem fala pouco e entrega muito, tem um efeito no ambiente que vai além da admiração. Alice incomoda porque aparece. E aparece porque tem <b>talento natural que não pede licença.</b></p>
+      </div>
+      <div class="define-box r d2">
+        <div class="define-titulo">O que define a Alice</div>
+        <div class="define-row"><span class="define-palavra">Reservada</span><span class="define-detalhe">mas intensa</span></div>
+        <div class="define-row"><span class="define-palavra">Focada</span><span class="define-detalhe">em qualquer quadra</span></div>
+        <div class="define-row"><span class="define-palavra">Determinada</span><span class="define-detalhe">com propósito</span></div>
+        <div class="define-row"><span class="define-palavra">Criativa</span><span class="define-detalhe">e curiosa</span></div>
+        <div class="define-row"><span class="define-palavra">Amiga verdadeira</span><span class="define-detalhe">fora da quadra</span></div>
+        <div class="define-row"><span class="define-palavra">Competitiva</span><span class="define-detalhe">por instinto</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A ATLETA -->
+<section id="atleta" class="secao atleta-bg">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">02</span>
+      <h2 class="secao-titulo">A <em>Atleta</em></h2>
+    </div>
+    <div class="atleta-cards">
+      <div class="atleta-card r"><div class="atleta-label">Cidade</div><div class="atleta-valor">Cristalina, GO</div></div>
+      <div class="atleta-card r d1"><div class="atleta-label">Escola</div><div class="atleta-valor">Colégio Ágora · 5ª Série</div></div>
+      <div class="atleta-card r d2"><div class="atleta-label">Federação</div><div class="atleta-valor">Brasiliense de Beach Tênis</div></div>
+      <div class="atleta-card r"><div class="atleta-label">Head Coach</div><div class="atleta-valor">Will Silva · W1 Academy · Luziânia</div></div>
+      <div class="atleta-card r d1"><div class="atleta-label">Dupla</div><div class="atleta-valor">Maria Clara Silva · 11 anos</div></div>
+      <div class="atleta-card r d2"><div class="atleta-label">Treinos</div><div class="atleta-valor">3 a 4× semana · Cristalina, Luziânia e Brasília</div></div>
+    </div>
+    <div class="atleta-narr">
+      <p class="r">O beach tênis chegou em 2025 pelo caminho mais natural: os pais, Ronaldo e Raquel, praticavam e Alice foi junto. Começou como brincadeira. Em semanas, já era mais do que isso. Seis meses de aulas depois, a turma já era pequena para ela.</p>
+      <p class="r d1">Foi quando Alice buscou algo maior. O head coach Will Silva enxergou o potencial e a convidou para treinar ao lado de sua filha Maria Clara. Com três meses dedicados à construção da base técnica, fundamentos, movimentação, leitura de jogo e situações reais de quadra, as duas foram para os torneios.</p>
+    </div>
+  </div>
+</section>
+
+<!-- O MOMENTO -->
+<section id="momento" class="secao momento-bg">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">03</span>
+      <h2 class="secao-titulo">O Momento que <em>Define</em></h2>
+    </div>
+    <p class="momento-ctx r">Final · Torneio Arena Bora Beach Bar · Categoria D Adulta · 2026</p>
+    <div class="momento-inline r">
+      <div class="momento-inline-placar">
+        <span class="mi-label">Adversárias</span>
+        <span class="mi-num mi-baixo">5</span>
+      </div>
+      <div class="mi-sep">×</div>
+      <div class="momento-inline-placar">
+        <span class="mi-label">Alice &amp; Maria Clara</span>
+        <span class="mi-num mi-baixo">2</span>
+      </div>
+      <div class="mi-virada">
+        <span>→</span>
+        <span class="mi-virada-text">A maioria recuaria. Alice foi para cima.</span>
+        <span>→</span>
+      </div>
+      <div class="momento-inline-placar">
+        <span class="mi-label">Alice &amp; Maria Clara</span>
+        <span class="mi-num mi-alto">7</span>
+      </div>
+      <div class="mi-sep">×</div>
+      <div class="momento-inline-placar">
+        <span class="mi-label">Adversárias</span>
+        <span class="mi-num mi-baixo">5</span>
+      </div>
+    </div>
+    <p class="momento-frase r" style="margin-top:24px;">
+      Não foi sorte. É o mesmo instinto que a leva ao tatame de jiu-jitsu três vezes por semana. <em>Força, concentração e resiliência que se constroem no processo, não quando o placar está favorável.</em>
+    </p>
+  </div>
+</section>
+
+<!-- O QUE A MOVE -->
+<section id="move" class="secao">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">04</span>
+      <h2 class="secao-titulo">O que a <em>move</em></h2>
+    </div>
+    <div class="move-grid">
+      <div class="move-texto">
+        <p class="r">Alice acompanha pela TV os principais torneios nacionais e internacionais de beach tênis. Não assiste por lazer: assiste para aprender, para absorver, para entender o que separa quem está no topo de quem ainda está chegando lá.</p>
+        <p class="r d1">Tem referências claras. E ter referências claras é o primeiro sinal de quem sabe onde quer chegar. O jiu-jitsu três vezes por semana não é por acaso: força, concentração e resiliência são construídas no processo, não no momento do torneio.</p>
+        <p class="r d2">O alto rendimento não é uma promessa. É um projeto em construção, treino por treino, torneio por torneio, com uma meta clara: <b>estar entre as melhores do Brasil até os 15 anos.</b></p>
+      </div>
+      <div class="r d2">
+        <div class="refs-box">
+          <div class="refs-box-header">Referências &amp; Ídolas</div>
+          <div class="ref-row">
+            <span class="ref-flag">🇧🇷</span>
+            <div><div class="ref-nome">Vitória Marquezine &amp; Sophia Schow</div><div class="ref-sub">Beach Tennis Brasileiro · Alto nível · Espelho de geração</div></div>
+          </div>
+          <div class="ref-row">
+            <span class="ref-flag">🇮🇹</span>
+            <div><div class="ref-nome">Giulia Gasparri &amp; Ninny Valentini</div><div class="ref-sub">Italianas · Número 1 do mundo no ranking da ITF</div></div>
+            <div class="ref-badge">#1 ITF</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORA DA QUADRA -->
+<section id="fora" class="secao fora-bg">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">05</span>
+      <h2 class="secao-titulo">Fora da <em>quadra</em></h2>
+    </div>
+    <div class="fora-grid">
+      <div class="fora-texto">
+        <p class="r">Fora do esporte é só uma menina de 10 anos, com tudo que isso tem de mais bonito. Amiga verdadeira, divertida, criativa e curiosa do jeito que só as crianças que pensam muito sobre tudo conseguem ser.</p>
+        <p class="r d1">É a menina que pergunta, que observa, que absorve tudo ao redor. Que assiste séries com a mesma atenção com que estuda uma jogada. Que anda de patins e de bicicleta com a leveza que falta às adversárias em quadra.</p>
+        <p class="r d2">Tem ao lado a irmãzinha <b>Nicole Zoboli, de 6 anos,</b> que acompanha cada passo dessa trajetória. Estuda no Colégio Ágora, está na quinta série, e é tão séria nos estudos quanto no esporte. Carrega o esporte como parte de quem ela é, não como tudo que ela é.</p>
+      </div>
+      <div class="hobbies-list r d2">
+        <div class="hobby-row"><span class="hobby-icon">⛸️</span><span class="hobby-nome">Patins</span><span class="hobby-detalhe">desde pequena</span></div>
+        <div class="hobby-row"><span class="hobby-icon">🚲</span><span class="hobby-nome">Bicicleta</span><span class="hobby-detalhe">momentos livres</span></div>
+        <div class="hobby-row"><span class="hobby-icon">📺</span><span class="hobby-nome">Séries de TV</span><span class="hobby-detalhe">fã declarada</span></div>
+        <div class="hobby-row"><span class="hobby-icon">🥋</span><span class="hobby-nome">Jiu-Jitsu</span><span class="hobby-detalhe">3× por semana</span></div>
+        <div class="hobby-row"><span class="hobby-icon">🏫</span><span class="hobby-nome">Colégio Ágora</span><span class="hobby-detalhe">5ª série</span></div>
+        <div class="hobby-row"><span class="hobby-icon">🤍</span><span class="hobby-nome">Família Zoboli</span><span class="hobby-detalhe">Nicole, Ronaldo e Raquel</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONQUISTAS -->
+<section id="conquistas" class="secao">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">06</span>
+      <h2 class="secao-titulo">Conquistas <em>2026</em></h2>
+    </div>
+    <div class="conquistas-list">
+      <div class="conquista r">
+        <div class="conquista-icon">🥇</div>
+        <div><div class="conquista-nome">Campeã · 1ª Etapa do Circuito Brasiliense · Cerrado Open</div><div class="conquista-sub">Fevereiro 2026 · Sub-12 Feminino · Federação Brasiliense de Beach Tênis</div></div>
+        <div class="conquista-tag">Sub-12</div>
+      </div>
+      <div class="conquista r d1">
+        <div class="conquista-icon">🥇</div>
+        <div><div class="conquista-nome">Campeã · 2ª Etapa do Circuito Brasiliense · Brasil Open Beach Tennis Series</div><div class="conquista-sub">Março 2026 · Sub-12 Feminino · Federação Brasiliense de Beach Tênis</div></div>
+        <div class="conquista-tag">Sub-12</div>
+      </div>
+      <div class="conquista r d2">
+        <div class="conquista-icon">🏆</div>
+        <div><div class="conquista-nome">Campeã · Torneio Arena Bora Beach Bar</div><div class="conquista-sub">Categoria D Adulta · Virada de 5×2 para 7×5 na final</div></div>
+        <div class="conquista-tag">Cat. D Adulta</div>
+      </div>
+      <div class="conquista top r d3">
+        <div class="conquista-icon">⭐</div>
+        <div><div class="conquista-nome">Ranking Nº 1 · Circuito Brasiliense Sub-12 Feminino</div><div class="conquista-sub">10 anos · 6 meses de aulas · 3 meses de preparação técnica</div></div>
+        <div class="conquista-tag">Ranking #1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- O PROJETO — LINHA DO TEMPO -->
+<section id="projeto" class="secao proj-bg">
+  <div class="wrap">
+    <div class="secao-header r">
+      <span class="secao-num">07</span>
+      <h2 class="secao-titulo">O <em>Projeto</em></h2>
+    </div>
+    <div class="timeline r">
+      <div class="timeline-track">
+        <div class="timeline-fill"></div>
+      </div>
+      <div class="timeline-steps">
+
+        <!-- 2026 -->
+        <div class="timeline-step ativo-step">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot ativo">2026</div>
+          </div>
+          <div class="timeline-ano">2026</div>
+          <div class="timeline-itens">
+            <div class="timeline-item">Percorrer todas as etapas do Circuito Brasiliense e estar no pódio</div>
+            <div class="timeline-item">Classificar para a Copa das Federações representando o DF</div>
+            <div class="timeline-item">2 etapas do Circuito Goiano</div>
+            <div class="timeline-item">1 etapa do Nacional Infantojuvenil</div>
+          </div>
+        </div>
+
+        <!-- 2027 -->
+        <div class="timeline-step">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot">2027</div>
+          </div>
+          <div class="timeline-ano">2027</div>
+          <div class="timeline-itens">
+            <div class="timeline-item">Circuito Nacional Infantojuvenil como foco principal</div>
+            <div class="timeline-item">Último ano na categoria Sub-12</div>
+            <div class="timeline-item">Consolidação no cenário nacional</div>
+          </div>
+        </div>
+
+        <!-- META -->
+        <div class="timeline-step meta-step">
+          <div class="timeline-dot-wrap">
+            <div class="timeline-dot meta">15</div>
+          </div>
+          <div class="timeline-ano">Meta</div>
+          <div class="timeline-itens">
+            <div class="timeline-item">Aos 15 anos, entre as 100 melhores do Brasil no ITF Beach Tennis World Tour</div>
+            <div class="timeline-item">Projeto de longo prazo, treino por treino</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EM UMA LINHA -->
+<section class="eul">
+  <div class="eul-inner">
+    <div class="eul-chip r">Em uma linha</div>
+    <p class="eul-frase r d1">
+      Quem conhece a Alice sabe que o ranking<br>é apenas um detalhe.<br><br>
+      <em>É a presença. É a intensidade.</em><br>
+      É a menina que não anuncia.<br>
+      <b>Ela simplesmente aparece.</b>
+    </p>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="secao contato-bg">
+  <div class="wrap">
+    <div class="contato-inner">
+      <div>
+        <div class="contato-marca">Alice Zoboli</div>
+        <div class="contato-sub">Intensidade que Marca Presença</div>
+      </div>
+      <div class="contato-info">
+        <div class="contato-linha"><b>@alice.zoboli</b> · Instagram</div>
+        <div class="contato-linha">Responsável: <b>@raquelzoboli</b></div>
+        <div class="contato-linha">Head Coach: <b>@willsilva_w1academy</b> · W1 Academy · Luziânia, GO</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const obs = new IntersectionObserver(
+  es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('v'); }),
+  { threshold: 0.08, rootMargin: '0px 0px -32px 0px' }
+);
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
